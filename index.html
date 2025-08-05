@@ -1,80 +1,68 @@
-import json
-import os
+# Recarregar o JSON completo com base na estrutura Elementor
+with open(original_json_path, "r", encoding="utf-8") as f:
+    data = json.load(f)
 
-# Caminho do novo arquivo JSON carregado
-json_path = "/mnt/data/melancia esp.json"
-
-# Nome da nova pasta organizada
-organized_folder = "/mnt/data/melancia-vercel-codigo-normal"
-os.makedirs(organized_folder, exist_ok=True)
-
-# Criar estrutura base do HTML com marcação organizada
-html_template = """
+# Estrutura básica do HTML completo (sem perder dados)
+html_header = """
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Página Melancia</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;800&display=swap" rel="stylesheet">
   <style>
-    body {{
-      font-family: 'Roboto', sans-serif;
-      margin: 0;
-      padding: 0;
-      background: #fff;
-    }}
-    .container {{
-      max-width: 700px;
-      margin: 0 auto;
-      padding: 20px;
-    }}
-    img {{
-      max-width: 100%;
-      height: auto;
-      display: block;
-    }}
+    body { margin: 0; padding: 0; font-family: sans-serif; background: #fff; }
+    .elementor-section { margin-bottom: 30px; }
+    .elementor-widget-image img { max-width: 100%; height: auto; }
+    .elementor-container { max-width: 1140px; margin: auto; padding: 20px; }
   </style>
 </head>
 <body>
-  <div class="container">
-{content}
-  </div>
+<div class="elementor">
+"""
+
+html_footer = """
+</div>
 </body>
 </html>
 """
 
-# Abrir e carregar o JSON
-with open(json_path, 'r', encoding='utf-8') as f:
-    data = json.load(f)
-
-# Função para extrair e organizar blocos em HTML puro
-def organize_elements(elements, indent=4):
-    result = []
-    space = " " * indent
+# Função para traduzir elementos do Elementor para HTML bruto
+def render_elementor_elements(elements):
+    html = []
     for el in elements:
-        widget = el.get("widgetType")
+        widget = el.get("widgetType", "")
         settings = el.get("settings", {})
+        el_class = f'elementor-widget-{widget}' if widget else ''
+
+        # Renderiza HTML bruto (bloco personalizado)
         if widget == "html" and "html" in settings:
-            result.append(f"{space}{settings['html']}")
+            html.append(f'<div class="{el_class}">{settings["html"]}</div>')
+        # Renderiza textos
         elif widget == "text-editor" and "editor" in settings:
-            result.append(f"{space}<div>{settings['editor']}</div>")
-        elif widget == "image" and "url" in settings.get("image", {}):
-            url = settings["image"]["url"]
-            result.append(f'{space}<img src="{url}" alt="Imagem" />')
+            html.append(f'<div class="{el_class}">{settings["editor"]}</div>')
+        # Renderiza imagem
+        elif widget == "image":
+            image_data = settings.get("image", {})
+            img_url = image_data.get("url", "")
+            if img_url:
+                html.append(f'<div class="{el_class}"><img src="{img_url}" alt="Imagem" /></div>')
+
+        # Renderiza recursivamente os filhos
         if "elements" in el:
-            result.append(organize_elements(el["elements"], indent + 2))
-    return "\n".join(result)
+            inner_html = render_elementor_elements(el["elements"])
+            html.append(inner_html)
+    return "\n".join(html)
 
-# Gerar HTML formatado
-formatted_content = organize_elements(data["content"])
-final_html = html_template.format(content=formatted_content)
+# Renderizar o conteúdo do JSON completo
+rendered_body = render_elementor_elements(data["content"])
+full_html = html_header + rendered_body + html_footer
 
-# Salvar o novo arquivo
-output_path = os.path.join(organized_folder, "index.html")
-with open(output_path, "w", encoding="utf-8") as f:
-    f.write(final_html)
+# Salvar HTML completo
+output_dir = "/mnt/data/melancia-vercel-completo"
+os.makedirs(output_dir, exist_ok=True)
+final_path = os.path.join(output_dir, "index.html")
+with open(final_path, "w", encoding="utf-8") as f:
+    f.write(full_html)
 
-output_path
+final_path
