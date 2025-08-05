@@ -1,103 +1,80 @@
+import json
+import os
 
+# Caminho do novo arquivo JSON carregado
+json_path = "/mnt/data/melancia esp.json"
+
+# Nome da nova pasta organizada
+organized_folder = "/mnt/data/melancia-vercel-codigo-normal"
+os.makedirs(organized_folder, exist_ok=True)
+
+# Criar estrutura base do HTML com marcação organizada
+html_template = """
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Melancia Esp</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Página Melancia</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;800&display=swap" rel="stylesheet">
   <style>
-    body { font-family: 'Roboto', sans-serif; margin: 0; padding: 0; background: #fff; }
-    .container { max-width: 700px; margin: auto; padding: 20px; }
-    img { max-width: 100%; height: auto; display: block; }
-    .comment-box { background: #F6F6F6; border-radius: 10px; padding: 10px; margin: 10px 0; }
-    .comment-meta { color: #3C55B0; font-size: 12px; margin-top: 5px; }
+    body {{
+      font-family: 'Roboto', sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #fff;
+    }}
+    .container {{
+      max-width: 700px;
+      margin: 0 auto;
+      padding: 20px;
+    }}
+    img {{
+      max-width: 100%;
+      height: auto;
+      display: block;
+    }}
   </style>
 </head>
 <body>
   <div class="container">
-    <!-- Meta Pixel Code -->
-<script>
-!function(f,b,e,v,n,t,s)
-{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-n.queue=[];t=b.createElement(e);t.async=!0;
-t.src=v;s=b.getElementsByTagName(e)[0];
-s.parentNode.insertBefore(t,s)}(window, document,'script',
-'https://connect.facebook.net/en_US/fbevents.js');
-fbq('init', '1488770762065574');
-fbq('track', 'PageView');
-</script>
-<noscript><img height="1" width="1" style="display:none"
-src="https://www.facebook.com/tr?id=1488770762065574&ev=PageView&noscript=1"
-/></noscript>
-<!-- End Meta Pixel Code -->
-<!-- Meta Pixel Code -->
-<script>
-!function(f,b,e,v,n,t,s)
-{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-n.queue=[];t=b.createElement(e);t.async=!0;
-t.src=v;s=b.getElementsByTagName(e)[0];
-s.parentNode.insertBefore(t,s)}(window, document,'script',
-'https://connect.facebook.net/en_US/fbevents.js');
-fbq('init', '438348882101985');
-fbq('track', 'PageView');
-</script>
-<noscript><img height="1" width="1" style="display:none"
-src="https://www.facebook.com/tr?id=438348882101985&ev=PageView&noscript=1"
-/></noscript>
-<!-- End Meta Pixel Code -->
-<img src="https://truquemelancia.online/wp-content/uploads/2024/04/iAgYCw9006887-2-1.webp" alt="imagem"/>
-<img src="https://truquemelancia.online/wp-content/uploads/2024/04/DESCUBRA-COMO-FICAR-COM-A-FERRAMENTA-DURA-POR-HORAS-COM-ESSE-SIMPLES-TRUQUE-1-1.png" alt="imagem"/>
-<div id="vid_66230fc74f0e25000829cfb8" style="position:relative;width:100%;padding: 56.25% 0 0;"> <img id="thumb_66230fc74f0e25000829cfb8" src="https://images.converteai.net/9e201e5c-92a4-47fe-9dfb-c61a52a3ccbe/players/66230fc74f0e25000829cfb8/thumbnail.jpg" style="position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;display:block;"> <div id="backdrop_66230fc74f0e25000829cfb8" style="position:absolute;top:0;width:100%;height:100%;-webkit-backdrop-filter:blur(5px);backdrop-filter:blur(5px);"></div> </div> <script type="text/javascript" id="scr_66230fc74f0e25000829cfb8"> var s=document.createElement("script"); s.src="https://scripts.converteai.net/9e201e5c-92a4-47fe-9dfb-c61a52a3ccbe/players/66230fc74f0e25000829cfb8/player.js", s.async=!0,document.head.appendChild(s); </script>
-<p class="elementor-heading-title elementor-size-default"><strong>✅ Mira este vídeo hasta el final para acceder al TRUCO</strong></p>
-<img src="https://truquemelancia.online/wp-content/uploads/2024/04/Design-sem-nome-10.png" alt="imagem"/>
-<img src="https://truquemelancia.online/wp-content/uploads/2024/04/cnn2-1.jpg" alt="imagem"/>
-<img src="https://truquemelancia.online/wp-content/uploads/2024/04/pexels-estudio-polaroid-3116381-scaled.jpg" alt="imagem"/>
-<p><strong><span style="color: #365899;">Maycon disse:</span></strong><br />Meu relacionamento mudou da agua para o vinho! Incrivel </p>
-<p>Responder · 62 Curtir · <span style="color: #808080;">2h</span></p>
-<img src="https://truquemelancia.online/wp-content/uploads/2024/04/curitr.png" alt="imagem"/>
-<img src="https://truquemelancia.online/wp-content/uploads/2024/04/Amei.png" alt="imagem"/>
-<p>62</p>
-<img src="https://truquemelancia.online/wp-content/uploads/2024/04/pexels-pixabay-262391.jpg" alt="imagem"/>
-<p><strong><span style="color: #365899;">Matheus disse:</span></strong><br />Resolveu todos os problemas que eu tinha em casa!</p>
-<p>Responder · 47 Curtir · <span style="color: #808080;">35 min</span></p>
-<img src="https://truquemelancia.online/wp-content/uploads/2024/04/Amei.png" alt="imagem"/>
-<img src="https://truquemelancia.online/wp-content/uploads/2024/04/curitr.png" alt="imagem"/>
-<p>47</p>
-<img src="https://truquemelancia.online/wp-content/uploads/2024/04/pexels-andrea-piacquadio-3785079-scaled.jpg" alt="imagem"/>
-<p><strong><span style="color: #365899;">Andre disse:</span></strong><br />Recuperei minha confianca para sair com as mulheres</p>
-<p>Responder · 12 Curtir · <span style="color: #808080;">7 min</span></p>
-<img src="https://truquemelancia.online/wp-content/uploads/2024/04/Amei.png" alt="imagem"/>
-<img src="https://truquemelancia.online/wp-content/uploads/2024/04/curitr.png" alt="imagem"/>
-<p>12</p>
-<img src="https://truquemelancia.online/wp-content/uploads/2024/04/pexels-andrea-piacquadio-3831569-scaled.jpg" alt="imagem"/>
-<p><strong><span style="color: #365899;">Jorge disse:</span></strong><br />O truque é incrivel jamais pensei que poderia voltar a te a libido de um homem de 20 anos! </p>
-<p>Responder · 26 Curtir · <span style="color: #808080;">1h</span></p>
-<img src="https://truquemelancia.online/wp-content/uploads/2024/04/curitr.png" alt="imagem"/>
-<img src="https://truquemelancia.online/wp-content/uploads/2024/04/Amei.png" alt="imagem"/>
-<p>26</p>
-<img src="https://truquemelancia.online/wp-content/uploads/2024/04/pexels-nicholas-swatz-2770600-scaled.jpg" alt="imagem"/>
-<p><strong><span style="color: #365899;">Carlos disse:</span></strong><br />Voltei a dar trabalho para minha esposa! </p>
-<p>Responder · 91 Curtir · <span style="color: #808080;">45 min</span></p>
-<img src="https://truquemelancia.online/wp-content/uploads/2024/04/curitr.png" alt="imagem"/>
-<img src="https://truquemelancia.online/wp-content/uploads/2024/04/Amei.png" alt="imagem"/>
-<p>91</p>
-<img src="https://truquemelancia.online/wp-content/uploads/2024/04/pexels-craig-mckay-842980-scaled.jpg" alt="imagem"/>
-<p><strong><span style="color: #365899;">Paulo disse:</span></strong><br>Minha vida sexual deu uma reviravolta incriveil, voltei a ser desejado pelas mulheres!</p>
-<p>Responder · 38 Curtir · <span style="color: #808080;">19 min</span></p>
-<img src="https://truquemelancia.online/wp-content/uploads/2024/04/curitr.png" alt="imagem"/>
-<img src="https://truquemelancia.online/wp-content/uploads/2024/04/Amei.png" alt="imagem"/>
-<p>38</p>
-<p>Essa públicação não está mais recebendo comentários!</p>
-<img src="https://truquemelancia.online/wp-content/uploads/2024/04/Facebook_logo_square.png" alt="imagem"/>
-<p>Facebook</p>
-<p>Este site não é afiliado ao Facebook ou a qualquer entidade do Facebook Inc.<br />Depois que você sair do Facebook, a responsabilidade não é deles e sim do nosso site.<br />Fazemos os esforços necessários para indicar claramente e mostrar todas as provas do produto e usamos resultados reais.<br />© 2024 – Todos os direitos reservados.</p>
+{content}
   </div>
 </body>
 </html>
+"""
+
+# Abrir e carregar o JSON
+with open(json_path, 'r', encoding='utf-8') as f:
+    data = json.load(f)
+
+# Função para extrair e organizar blocos em HTML puro
+def organize_elements(elements, indent=4):
+    result = []
+    space = " " * indent
+    for el in elements:
+        widget = el.get("widgetType")
+        settings = el.get("settings", {})
+        if widget == "html" and "html" in settings:
+            result.append(f"{space}{settings['html']}")
+        elif widget == "text-editor" and "editor" in settings:
+            result.append(f"{space}<div>{settings['editor']}</div>")
+        elif widget == "image" and "url" in settings.get("image", {}):
+            url = settings["image"]["url"]
+            result.append(f'{space}<img src="{url}" alt="Imagem" />')
+        if "elements" in el:
+            result.append(organize_elements(el["elements"], indent + 2))
+    return "\n".join(result)
+
+# Gerar HTML formatado
+formatted_content = organize_elements(data["content"])
+final_html = html_template.format(content=formatted_content)
+
+# Salvar o novo arquivo
+output_path = os.path.join(organized_folder, "index.html")
+with open(output_path, "w", encoding="utf-8") as f:
+    f.write(final_html)
+
+output_path
